@@ -16,7 +16,7 @@ public class DamageSystem : MonoBehaviour
         return hitEnemies.Length > 0;
     }
 
-    void GiveDamage() // Вызиваеться как событие в анимцях удара игрока
+    void GiveDamage() // Called as an event in the Attack animation
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 

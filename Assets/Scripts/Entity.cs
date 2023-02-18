@@ -43,12 +43,12 @@ public class Entity : MonoBehaviour
         }
     }
 
-    private void onDead() // Вызываеться в конце анимации Death
+    private void onDead() // Called at the end of the Death animation
     {
         Destroy(gameObject);
         if (tag == "Player")
         {
-            SceneLoader.LoadRestartWindow();
+            SceneLoader.LoadDefeatWindow();
         }
     }
 }

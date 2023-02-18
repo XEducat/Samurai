@@ -13,29 +13,32 @@ public class EnemySystem : MonoBehaviour
     [SerializeField] int positionOfPatrool;
     [SerializeField] float stopingDistance;
      
+    private bool movingRight = false;
+    private EnemyState State = EnemyState.None;
+
     [SerializeField] Transform point;
-    Transform player;
-    Animator anim;
-
-    bool movingRight = false;
+    private Transform player;
+    private Animator anim;
 
 
-    void Start()
+    private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         anim = GetComponent<Animator>();
     }
 
 
-    void Update()
+    private void Update()
     {
         if (GetComponent<Entity>().isDead) return;
 
         Reflect();
-        CheckEnvironment();
+        DefineState();
+        CheckDirection();
+        PlayState();
     }
 
-    void Reflect()
+    private void Reflect()
     {
         float ScaleX = transform.localScale.x;
 
@@ -51,7 +54,8 @@ public class EnemySystem : MonoBehaviour
         transform.localScale = new Vector2(ScaleX, transform.localScale.y);
     }
 
-    enum EnemyState
+
+    private enum EnemyState
     {
         None,
         Angry,
@@ -59,29 +63,24 @@ public class EnemySystem : MonoBehaviour
         GoBack
     }
 
-    void CheckEnvironment()
+    void DefineState()
     {
-        EnemyState state = EnemyState.None;
-
         if (Vector2.Distance(transform.position, player.position) < stopingDistance)
         {
-            state = EnemyState.Angry;
+            State = EnemyState.Angry;
         }
         else if (Vector2.Distance(transform.position, point.position) < positionOfPatrool)
         {
-            state = EnemyState.Chill;
+            State = EnemyState.Chill;
         }
         else if (Vector2.Distance(transform.position, player.position) > stopingDistance)
         {
-            state = EnemyState.GoBack;
+            State = EnemyState.GoBack;
         }
-
-        CheckDirection(state);
-        PlayState(state);
     }
 
 
-    void CheckDirection(EnemyState State)
+    void CheckDirection()
     {
         switch(State)
         {
@@ -120,7 +119,7 @@ public class EnemySystem : MonoBehaviour
         }
     }
 
-    private void PlayState(EnemyState State)
+    private void PlayState()
     {
         switch(State)
         {

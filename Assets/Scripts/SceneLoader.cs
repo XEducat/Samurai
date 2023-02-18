@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-// SceneLoader - все загрузки сцен и переходы
-// осуществл€ютьс€ через него
+// SceneLoader - all loading scenes and transitions
+// implemented through it
 
 public class SceneLoader : MonoBehaviour 
 {
@@ -30,17 +30,17 @@ public class SceneLoader : MonoBehaviour
     public static void LoadMenu_WithLoading() => LoadWithLoadingWindow(Scenes.Menu);
 
     /// <summary>
-    /// ѕереход на игровое поле
+    /// Transition to the playing field
     /// </summary>
     public static void LoadGame() => Load(Scenes.Game);
 
     /// <summary>
-    /// ѕереход на игровое поле с загрузочным экраном
+    /// Transition to the playing field with a loading screen
     /// </summary>
     public static void LoadGame_WithLoading() => LoadWithLoadingWindow(Scenes.Game);
 
     /// <summary>
-    /// ѕереход на окно проиграша
+    /// Transition to the defeat window
     /// </summary>
-    public static void LoadRestartWindow() => Load(Scenes.Restart);
+    public static void LoadDefeatWindow() => Load(Scenes.Restart);
 }
