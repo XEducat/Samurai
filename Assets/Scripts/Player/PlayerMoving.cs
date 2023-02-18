@@ -19,8 +19,11 @@ public class PlayerMoving : MonoBehaviour
 
     void Update()
     {
-        if (GetComponent<Entity>().isDead) 
+        if (GetComponent<Entity>().isDead)
+        {
+            rb.velocity = Vector3.zero;
             return;
+        }
 
         Reflect();
         ChekingGround();
@@ -134,10 +137,6 @@ public class PlayerMoving : MonoBehaviour
                 anim.StopPlayback();
                 anim.Play("Lunge");
                 LungeRelativeToDirection();
-            }
-            else
-            {
-                Debug.Log("Рывок недоступен");
             }
         }
 

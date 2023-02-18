@@ -820,7 +820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 1595850397}
-  attackRange: 8
+  attackRange: 8.5
   enemyLayers:
     serializedVersion: 2
     m_Bits: 512
@@ -2365,6 +2365,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 40141150}
     - target: {fileID: 6540967295879609349, guid: 6334f7cdbba12c24e9874220b5ec22a1, type: 3}
+      propertyPath: attackCoolDown
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540967295879609349, guid: 6334f7cdbba12c24e9874220b5ec22a1, type: 3}
       propertyPath: stopingDistance
       value: 30
       objectReference: {fileID: 0}
@@ -2384,6 +2388,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6540967295879609354, guid: 6334f7cdbba12c24e9874220b5ec22a1, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 87575392ccb50f3429ca1fe32a488698, type: 2}
     - target: {fileID: 7958820488842332956, guid: 6334f7cdbba12c24e9874220b5ec22a1, type: 3}
       propertyPath: damage
       value: 20

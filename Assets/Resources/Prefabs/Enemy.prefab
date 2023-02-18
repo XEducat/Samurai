@@ -50,10 +50,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20386e12bcda21f429455e33be569541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  moveSpeed: 0
   positionOfPatrool: 10
   stopingDistance: 30
   point: {fileID: 0}
+  attackCoolDown: 1
 --- !u!114 &7958820488842332956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +175,7 @@ Animator:
   m_GameObject: {fileID: 6540967295879609344}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3408577a5a7c69f4caa96a84f59a885f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 87575392ccb50f3429ca1fe32a488698, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

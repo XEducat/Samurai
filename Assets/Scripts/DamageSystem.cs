@@ -24,8 +24,6 @@ public class DamageSystem : MonoBehaviour
         {
             Entity entity = enemy.GetComponent<Entity>();
             entity.TakeHit(damage);
-
-            Debug.Log($"{gameObject.name} hit {enemy.name}");
         }
     }
 

@@ -80,21 +80,6 @@ public class EnemySystem : MonoBehaviour
         PlayState(state);
     }
 
-    private void PlayState(EnemyState State)
-    {
-        switch(State)
-        {
-            case EnemyState.Angry:
-                Angry();
-                break;
-            case EnemyState.Chill:
-                Chill();
-                break;
-            case EnemyState.GoBack:
-                GoBack();
-                break;
-        }
-    }
 
     void CheckDirection(EnemyState State)
     {
@@ -135,52 +120,49 @@ public class EnemySystem : MonoBehaviour
         }
     }
 
-    void Angry()
+    private void PlayState(EnemyState State)
     {
-        if (!inAttack)
+        switch(State)
         {
-            if (transform.position.x == player.position.x)
-            {
-                anim.Play("Idle");
-            }
-            else
-            {
-                // targetVector - создан что бы заморозить передвижение врага по оси Y
-                Vector3 targetVector = new Vector3(player.position.x, transform.position.y, player.position.z);
-                transform.position = Vector2.MoveTowards(transform.position, targetVector, moveSpeed * Time.deltaTime);
-                anim.Play("Walk"); // TODO - Ќужно сделать через условие дл€ бега ( ƒл€ коректной отработки TakeHit )
-            }
+            case EnemyState.Angry:
+                Angry();
+                break;
+            case EnemyState.Chill:
+                Chill();
+                break;
+            case EnemyState.GoBack:
+                GoBack();
+                break;
         }
-        TryAttack();
     }
 
     [SerializeField] float attackCoolDown = 1f;
-    bool inAttack = false;
-    void TryAttack()
+    void Angry()
     {
-        if (!isLockAttack)
+        DamageSystem attack = GetComponent<DamageSystem>();
+        if (attack.CheckAttackRadius() && !AttackLocked)
         {
-            isLockAttack = true;
+            AttackLocked = true;
             Invoke("UnlockAttack", attackCoolDown);
 
-            DamageSystem attack = GetComponent<DamageSystem>();
-            if (attack.CheckAttackRadius())
-            {
-                inAttack = true;
-                anim.StopPlayback();
-                anim.Play("Attack");
-            }
-            else
-            {
-                inAttack = false;
-            }
+            anim.Play("Attack");
+        }
+        else if (attack.CheckAttackRadius() == false)
+        {
+            Vector3 targetVector = new Vector3(player.position.x, transform.position.y, player.position.z);
+            transform.position = Vector2.MoveTowards(transform.position, targetVector, moveSpeed * Time.deltaTime);
+            anim.Play("Walk"); // TODO - Ќужно сделать исправить аниматор
+        }
+        else if (AttackLocked == false)
+        {
+            anim.Play("Idle");
         }
     }
 
-    bool isLockAttack = false;
+    bool AttackLocked = false;
     void UnlockAttack()
     {
-        isLockAttack = false;
+        AttackLocked = false;
     }
 
 
