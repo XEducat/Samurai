@@ -9,19 +9,22 @@ public class Trap : MonoBehaviour
         GameObject person = collision.gameObject;
         person.GetComponent<Entity>().TakeHit(damage);
 
-        RepelPerson2D(person);
+        RepulsionPerson2D(person);
     }
 
 
-    [SerializeField] float repelForceX = 15000f;
-    [SerializeField] float repelForceY = 1000f;
-    private void RepelPerson2D(GameObject Person)
+    [SerializeField] float repulsionForceX = 15000f;
+    [SerializeField] float repulsionForceY = 1000f;
+    private void RepulsionPerson2D(GameObject Person)
     {
         if (Person.GetComponent<Entity>().isDead) return;
 
         Rigidbody2D personRigitbody2D = Person.GetComponent<Rigidbody2D>();
+        bool DirectionLookToRight = Person.GetComponent<PlayerMoving>().faceRight;
 
-        personRigitbody2D?.AddForce(Vector2.left * repelForceX);
-        personRigitbody2D?.AddForce(Vector2.up * repelForceY);
+        Vector2 repulsionVector = DirectionLookToRight ? Vector2.left : Vector2.right;
+
+        personRigitbody2D?.AddForce(repulsionVectorVector * repulsionForceX);
+        personRigitbody2D?.AddForce(Vector2.up * repulsionForceY);
     }
 }

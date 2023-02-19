@@ -146,7 +146,7 @@ public class EnemySystem : MonoBehaviour
 
             anim.Play("Attack");
         }
-        else if (attack.CheckAttackRadius() == false)
+        else if (attack.CheckAttackRadius() == false && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             Vector3 targetVector = new Vector3(player.position.x, transform.position.y, player.position.z);
             transform.position = Vector2.MoveTowards(transform.position, targetVector, moveSpeed * Time.deltaTime);

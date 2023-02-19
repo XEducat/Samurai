@@ -34,7 +34,7 @@ public class PlayerMoving : MonoBehaviour
     }
 
 
-    [SerializeField] bool faceRight = true;
+    public bool faceRight { get; private set; } = true;
     void Reflect()
     {
         if ((moveVector.x > 0 && !faceRight) || (moveVector.x < 0 && faceRight))
