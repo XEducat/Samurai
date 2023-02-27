@@ -170,10 +170,12 @@ public class EnemySystem : MonoBehaviour
         float moveSpeedInDirection = movingRight ? moveSpeed : moveSpeed * -1;
 
         transform.position = new Vector2(transform.position.x + moveSpeedInDirection * Time.deltaTime, transform.position.y);
+        anim.Play("Walk");
     }
 
     void GoBack()
     {
         transform.position = Vector2.MoveTowards(transform.position, point.position, moveSpeed * Time.deltaTime);
+        anim.Play("Walk");
     }
 }

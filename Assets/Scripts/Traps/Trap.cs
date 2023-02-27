@@ -24,7 +24,7 @@ public class Trap : MonoBehaviour
 
         Vector2 repulsionVector = DirectionLookToRight ? Vector2.left : Vector2.right;
 
-        personRigitbody2D?.AddForce(repulsionVectorVector * repulsionForceX);
+        personRigitbody2D?.AddForce(repulsionVector * repulsionForceX);
         personRigitbody2D?.AddForce(Vector2.up * repulsionForceY);
     }
 }

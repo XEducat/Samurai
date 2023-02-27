@@ -46,7 +46,7 @@ public class PlayerMoving : MonoBehaviour
 
 
     [SerializeField] bool onGround;
-    [SerializeField] float checkRadius = 0.5f;
+    [SerializeField] float checkRadius = 2.45f;
     [SerializeField] Transform GroundCheck;
     [SerializeField] LayerMask Ground;
     void ChekingGround()
